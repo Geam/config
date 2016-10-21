@@ -1,0 +1,51 @@
+function git_custom_status {
+    ISGIT=$(git status --ignore-submodules 2> /dev/null)
+    if [ -n "$ISGIT" ]
+    then
+        STATUS=$(echo "$ISGIT" | grep "modified:\|renamed:\|new file:\|deleted:" | grep -v ".vim/bundle\|untracked")
+        BRANCH=$(git branch | cut -d ' ' -f 2 | tr -d '\n')
+        if [ -n "$STATUS" ]
+        then
+            COLOR="%{$fg[red]%}"
+        else
+            REMOTE_EXIST=$(git branch -a | grep remotes/origin/$BRANCH)
+            if [ -n "$REMOTE_EXIST" ]
+            then
+                REMOTE=$(git diff --ignore-submodules origin/$BRANCH)
+                if [ -n "$REMOTE" ]
+                then
+                    COLOR="%{$fg[yellow]%}"
+                else
+                    COLOR="%{$fg[green]%}"
+                fi
+            else
+                COLOR="%{$fg[green]%}"
+            fi
+        fi
+        PROMPT="$PROMPT %{$COLOR%}[$BRANCH]%{$NORMAL%}"
+        echo "[%{$COLOR%}$BRANCH%{$reset_color%}]"
+    fi
+}
+
+
+function zle-line-init zle-keymap-select {
+    if [[ $? -eq 0 ]]
+    then
+        CSTAT="%{$fg[green]%}"
+    else
+        CSTAT="%{$fg[red]%}"
+    fi
+    if [[ "${KEYMAP}" == "main" ]] || [[ "${KEYMAP}" == "viins" ]]
+    then
+        MOD="%{$fg_bold[green]%}[I]%{$reset_color%}"
+    else
+        MOD="%{$fg_bold[yellow]%}[N]%{$reset_color%}"
+    fi
+    PS1="%n@%m:%{$fg_bold[blue]%}%~%{$reset_color%} $(git_custom_status)
+${MOD} %B${CSTAT}> %{$reset_color%}"
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
