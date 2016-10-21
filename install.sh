@@ -11,3 +11,7 @@ git clone git@github.com:Geam/config_vim $VIM_CONF
 ln -s $VIM_CONF/ $HOME/.vim
 ln -s $VIM_CONF/vimrc $HOME/.vimrc
 vim
+
+# git
+ln -s $CONF_PATH/gitconfig $HOME/.gitconfig
+ln -s $CONF_PATH/gitignore_global $HOME/.gitignore_global

@@ -1,0 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    .gitconfig                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zaz <zaz@staff.42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2013/06/20 15:51:57 by zaz               #+#    #+#              #
+#    Updated: 2015/06/21 21:42:31 by mdelage          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[user]
+	name = Marc DELAGE
+	email = mdelage@student.42.fr
+[push]
+	default = simple
