@@ -22,7 +22,6 @@ function git_custom_status {
                 COLOR="%{$fg[green]%}"
             fi
         fi
-        PROMPT="$PROMPT %{$COLOR%}[$BRANCH]%{$NORMAL%}"
         echo "[%{$COLOR%}$BRANCH%{$reset_color%}]"
     fi
 }
