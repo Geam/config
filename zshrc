@@ -11,6 +11,7 @@ SAVEHIST=5000
 HISTSIZE=5000
 setopt inc_append_history
 setopt share_history
+setopt hist_ignore_dups
 
 # better autocomplete
 autoload -U compinit && compinit
@@ -41,7 +42,7 @@ source "$MY_CONFIG/prompt"
 
 #### GLOBAL ###################################################################
 # default editor
-editor=vim
+export EDITOR=vim
 
 # Couleurs pour le man
 man()
@@ -56,3 +57,6 @@ man()
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
 }
+
+# ssh-agent socket
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"

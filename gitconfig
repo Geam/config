@@ -18,3 +18,5 @@
 	email = mdelage@student.42.fr
 [push]
 	default = simple
+[tig]
+    tab-size = 4
