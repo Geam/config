@@ -40,6 +40,9 @@ source "$MY_CONFIG/aliases"
 # Load prompt
 source "$MY_CONFIG/prompt"
 
+# Load fzf config
+source "$MY_CONFIG/fzf"
+
 #### GLOBAL ###################################################################
 # default editor
 export EDITOR=vim
