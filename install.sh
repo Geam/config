@@ -15,3 +15,5 @@ vim
 # git
 ln -s $CONF_PATH/gitconfig $HOME/.gitconfig
 ln -s $CONF_PATH/gitignore_global $HOME/.gitignore_global
+
+# vim: filetype=sh tabstop=4 shiftwidth=4 expandtab

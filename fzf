@@ -21,4 +21,4 @@ fd() {
     cd "$dir"
 }
 
-# vim: set filetype=sh
+# vim: filetype=sh tabstop=4 shiftwidth=4 expandtab

@@ -2,7 +2,11 @@
 MY_CONFIG=$HOME/.config/my_config
 
 #### PATH and FPATH ###########################################################
-PATH=$HOME/bin:$PATH
+PATH=$HOME/bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH
+if type yarn 2>&1 >/dev/null
+then
+    PATH=$XDG_CONFIG_HOME/yarn/global/node_modules/.bin:$PATH
+fi
 
 #### ZSH CONFIG ###############################################################
 # zsh history
@@ -63,3 +67,14 @@ man()
 
 # ssh-agent socket
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+back()
+{
+    mv "$1" "$1"_back
+}
+
+#### GO #######################################################################
+export GOPATH=$HOME/test/go
+PATH=$PATH:$GOPATH/bin
+
+# vim: filetype=sh tabstop=4 shiftwidth=4 expandtab

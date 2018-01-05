@@ -3,7 +3,7 @@ function git_custom_status {
     if [ -n "$ISGIT" ]
     then
         STATUS=$(echo "$ISGIT" | grep "modified:\|renamed:\|new file:\|deleted:" | grep -v ".vim/bundle\|untracked")
-        BRANCH=$(git branch | cut -d ' ' -f 2 | tr -d '\n')
+        BRANCH=$(git branch | grep '*' | cut -d ' ' -f 2- | tr -d '\n')
         if [ -n "$STATUS" ]
         then
             COLOR="%{$fg[red]%}"
@@ -26,7 +26,6 @@ function git_custom_status {
     fi
 }
 
-
 function zle-line-init zle-keymap-select {
     if [[ $? -eq 0 ]]
     then
@@ -48,3 +47,5 @@ ${MOD} %B${CSTAT}> %{$reset_color%}"
 zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
+
+# vim: filetype=sh tabstop=4 shiftwidth=4 expandtab
